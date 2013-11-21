@@ -32,10 +32,16 @@ private:
 	sf::RectangleShape leftWall_;
 	sf::RectangleShape rightWall_;
 
+	sf::Font scoreFont_;
+	sf::Text scoreText_;
+
 	std::vector<std::shared_ptr<Entity>> entities_;
+
+	unsigned score_;
 
 	void createEntities();
 	void createWalls();
+	void updateScore();
 
 	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 };

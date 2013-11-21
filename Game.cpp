@@ -1,6 +1,8 @@
 #include <SFML\Graphics.hpp>
 
 #include <memory>
+#include <string>
+#include <iostream>
 
 #include "Game.h"
 #include "Ball.h"
@@ -9,10 +11,21 @@
 const float Game::WallSize = 20.f;
 
 Game::Game()
-: window_(sf::VideoMode(Game::Width, Game::Height), "Pong!")
+: window_(sf::VideoMode(Game::Width, Game::Height), "Pong!"), score_(3)
 {
 	createEntities();
 	createWalls();
+
+	scoreFont_.loadFromFile("Fonts/arial.ttf");
+
+	scoreText_.setFont(scoreFont_);
+	scoreText_.setString(std::to_string(score_));
+	scoreText_.setColor(sf::Color::Black);
+
+	sf::FloatRect textBounds = scoreText_.getLocalBounds();
+
+	scoreText_.setOrigin(textBounds.left + textBounds.width / 2, textBounds.top + textBounds.height / 2);
+	scoreText_.setPosition(Game::Width / 2, Game::Height / 2);
 }
 
 void Game::createWalls()
@@ -46,6 +59,24 @@ void Game::createEntities()
 	entities_.push_back(std::make_shared<Ball>(10.f));
 }
 
+void Game::updateScore()
+{
+	switch (score_)
+	{
+	case 3:
+		leftWall_.setFillColor(sf::Color::Green);
+		break;
+	case 2:
+		leftWall_.setFillColor(sf::Color(255, 165, 0));
+		break;
+	case 1:
+		leftWall_.setFillColor(sf::Color::Red);
+		break;
+	default:
+		break;
+	}
+}
+
 void Game::handleInput()
 {
 	sf::Event event;
@@ -63,9 +94,20 @@ void Game::update(sf::Time delta)
 {
 	for (auto entity : entities_)
 	{
+		if (entity->getType() == Entities::Ball)
+		{
+			if (score_ != 0 && ((Ball*)entity.get())->hitWall())
+			{	
+				scoreText_.setString(std::to_string(--score_));
+				((Ball*)entity.get())->setHitWall(false);
+			}
+		}
+
 		entity->checkCollisions(entities_);
 		entity->update(delta);
 	}
+
+	updateScore();
 }
 
 void Game::render()
@@ -73,10 +115,12 @@ void Game::render()
 	window_.clear();
 
 	window_.draw(centerWall_);
-	window_.draw(bottomWall_);
-	window_.draw(topWall_);
 	window_.draw(leftWall_);
 	window_.draw(rightWall_);
+	window_.draw(bottomWall_);
+	window_.draw(topWall_);
+
+	window_.draw(scoreText_);
 
 	for (auto entity : entities_)
 		entity->render(window_);

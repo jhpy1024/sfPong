@@ -52,6 +52,7 @@ void Ball::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 	}
 	if (position_.x <= Game::WallSize)
 	{
+		hitWall_ = true;
 		velocity_.x = -velocity_.x;
 		hitSound_.play();
 	}
@@ -114,6 +115,16 @@ bool Ball::movingLeft() const
 bool Ball::movingRight() const
 {
 	return velocity_.x > 0.f;
+}
+
+bool Ball::hitWall() const
+{
+	return hitWall_;
+}
+
+void Ball::setHitWall(bool flag)
+{
+	hitWall_ = flag;
 }
 
 sf::FloatRect Ball::getBounds() const

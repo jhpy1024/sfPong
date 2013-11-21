@@ -19,6 +19,9 @@ public:
 
 	sf::FloatRect getBounds() const override;
 
+	bool hitWall() const;
+	void setHitWall(bool flag);
+
 private:
 	sf::CircleShape shape_;
 	sf::Vector2f velocity_;
@@ -31,6 +34,8 @@ private:
 	sf::Vector2f getRandomVelocity();
 	bool movingLeft() const;
 	bool movingRight() const;
+
+	bool hitWall_ = false;
 
 	static const float Speed;
 };
