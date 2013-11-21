@@ -41,13 +41,13 @@ void Ball::handleInput()
 
 void Ball::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 {
-	if (position_.x >= Game::Width - radius_ * 2)
+	if (position_.x >= Game::Width - Game::WallSize - radius_ * 2)
 		velocity_.x = -velocity_.x;
-	if (position_.x <= 0)
+	if (position_.x <= Game::WallSize)
 		velocity_.x = -velocity_.x;
-	if (position_.y <= 0)
+	if (position_.y <= Game::WallSize)
 		velocity_.y = -velocity_.y;
-	if (position_.y >= Game::Height - radius_ * 2)
+	if (position_.y >= Game::Height - Game::WallSize - radius_ * 2)
 		velocity_.y = -velocity_.y;
 
 	for (auto entity : entities)

@@ -35,10 +35,10 @@ void Paddle::moveDown(sf::Time delta)
 
 void Paddle::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 {
-	if (position_.y < 0)
-		position_.y = 0.f;
-	if (position_.y > Game::Height - size_.y)
-		position_.y = Game::Height - size_.y;
+	if (position_.y < Game::WallSize)
+		position_.y = Game::WallSize;
+	if (position_.y > Game::Height - Game::WallSize - size_.y)
+		position_.y = Game::Height - Game::WallSize - size_.y;
 }
 
 void Paddle::update(sf::Time delta)
