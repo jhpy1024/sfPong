@@ -49,6 +49,31 @@ void Ball::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 		velocity_.y = -velocity_.y;
 	if (position_.y >= Game::Height - radius_ * 2)
 		velocity_.y = -velocity_.y;
+
+	for (auto entity : entities)
+	{
+		if (entity->getType() != type_)
+		{
+			if (entity->getBounds().intersects(getBounds()))
+			{
+				while (entity->getBounds().intersects(getBounds()))
+				{
+					if (movingLeft())
+					{
+						position_.x += 1.f;
+						shape_.setPosition(position_);
+					}
+					else if (movingRight())
+					{
+						position_.x -= 1.f;
+						shape_.setPosition(position_);
+					}
+				}
+
+				velocity_.x = -velocity_.x;
+			}
+		}
+	}
 }
 
 void Ball::update(sf::Time delta)
@@ -61,6 +86,16 @@ void Ball::update(sf::Time delta)
 void Ball::render(sf::RenderWindow& window)
 {
 	window.draw(shape_);
+}
+
+bool Ball::movingLeft() const
+{
+	return velocity_.x < 0.f;
+}
+
+bool Ball::movingRight() const
+{
+	return velocity_.x > 0.f;
 }
 
 sf::FloatRect Ball::getBounds() const

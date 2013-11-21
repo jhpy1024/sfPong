@@ -25,6 +25,8 @@ private:
 	float radius_;
 
 	sf::Vector2f getRandomVelocity();
+	bool movingLeft() const;
+	bool movingRight() const;
 
 	static const float Speed;
 };
