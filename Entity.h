@@ -4,10 +4,21 @@
 #include <SFML\Graphics.hpp>
 #include <memory>
 
+namespace Entities
+{
+	enum EntityType
+	{
+		Paddle,
+		Ball,
+		None
+	};
+}
+
+
 class Entity
 {
 public:
-	Entity(const sf::Vector2f& position = sf::Vector2f(0.f, 0.f));
+	Entity(Entities::EntityType type, const sf::Vector2f& position = sf::Vector2f(0.f, 0.f));
 
 	virtual void handleInput() = 0;
 	virtual void update(sf::Time delta) = 0;
@@ -15,8 +26,12 @@ public:
 
 	sf::Vector2f getPosition() const;
 
+	Entities::EntityType getType() const;
+
 protected:
 	sf::Vector2f position_;
+
+	Entities::EntityType type_ = Entities::None;
 };
 
 #endif

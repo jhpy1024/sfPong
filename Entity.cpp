@@ -4,8 +4,8 @@
 
 #include "Entity.h"
 
-Entity::Entity(const sf::Vector2f& position)
-: position_(position)
+Entity::Entity(Entities::EntityType type, const sf::Vector2f& position)
+: type_(type), position_(position)
 {
 
 }
@@ -13,4 +13,9 @@ Entity::Entity(const sf::Vector2f& position)
 sf::Vector2f Entity::getPosition() const
 {
 	return position_;
+}
+
+Entities::EntityType Entity::getType() const
+{
+	return type_;
 }

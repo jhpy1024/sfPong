@@ -7,7 +7,7 @@
 const float Paddle::Speed = 200.f;
 
 Paddle::Paddle(const sf::Vector2f& size, const sf::Vector2f& position)
-: Entity(position), size_(size)
+: Entity(Entities::Paddle, position), size_(size)
 {
 	shape_.setSize(size);
 	shape_.setFillColor(sf::Color::White);
