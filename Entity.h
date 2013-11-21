@@ -7,7 +7,7 @@
 class Entity
 {
 public:
-	Entity(const sf::Vector2f position = sf::Vector2f(0.f, 0.f));
+	Entity(const sf::Vector2f& position = sf::Vector2f(0.f, 0.f));
 
 	virtual void handleInput() = 0;
 	virtual void update(sf::Time delta) = 0;
