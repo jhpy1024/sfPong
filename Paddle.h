@@ -29,7 +29,7 @@ private:
 	bool upPressed_;
 	bool downPressed_;
 
-	static const int Speed = 100;
+	static const float Speed;
 };
 
 #endif
