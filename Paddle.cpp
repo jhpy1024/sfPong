@@ -55,3 +55,8 @@ void Paddle::render(sf::RenderWindow& window)
 {
 	window.draw(shape_);
 }
+
+sf::FloatRect Paddle::getBounds() const
+{
+	return shape_.getGlobalBounds();
+}

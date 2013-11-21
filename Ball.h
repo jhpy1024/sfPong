@@ -16,6 +16,8 @@ public:
 
 	void checkCollisions(std::vector<std::shared_ptr<Entity>>& entities) override;
 
+	sf::FloatRect getBounds() const override;
+
 private:
 	sf::CircleShape shape_;
 	sf::Vector2f velocity_;

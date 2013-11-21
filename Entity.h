@@ -28,8 +28,8 @@ public:
 
 	virtual void checkCollisions(std::vector<std::shared_ptr<Entity>>& entities) = 0;
 
+	virtual sf::FloatRect getBounds() const = 0;
 	sf::Vector2f getPosition() const;
-
 	Entities::EntityType getType() const;
 
 protected:

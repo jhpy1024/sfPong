@@ -22,6 +22,8 @@ public:
 
 	void checkCollisions(std::vector<std::shared_ptr<Entity>>& entities) override;
 
+	sf::FloatRect getBounds() const override;
+
 	float getWidth() const;
 	float getHeight() const;
 

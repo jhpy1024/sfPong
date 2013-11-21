@@ -62,3 +62,8 @@ void Ball::render(sf::RenderWindow& window)
 {
 	window.draw(shape_);
 }
+
+sf::FloatRect Ball::getBounds() const
+{
+	return shape_.getGlobalBounds();
+}
