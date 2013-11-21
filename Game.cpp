@@ -9,7 +9,7 @@ Game::Game()
 : window_(sf::VideoMode(Game::Width, Game::Height), "Pong!")
 {
 	entities_.push_back(std::make_shared<Paddle>(sf::Vector2f(15.f, 150.f),
-		sf::Vector2f(10, 100)));
+		sf::Vector2f(10, Game::Height / 2 - 150.f / 2)));
 }
 
 void Game::handleInput()
