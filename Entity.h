@@ -16,9 +16,8 @@ public:
 	sf::Vector2f getPosition() const;
 	std::shared_ptr<sf::Shape> getShape() const;
 
-private:
+protected:
 	sf::Vector2f position_;
-
 	std::shared_ptr<sf::Shape> shape_;
 };
 
