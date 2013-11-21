@@ -3,6 +3,11 @@
 
 #include <SFML\Graphics.hpp>
 
+#include <vector>
+#include <memory>
+
+#include "Entity.h"
+
 class Game
 {
 public:
@@ -19,6 +24,8 @@ public:
 	
 private:
 	sf::RenderWindow window_;
+
+	std::vector<std::shared_ptr<Entity>> entities_;
 
 	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 };
