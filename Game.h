@@ -14,13 +14,13 @@ public:
 	void update(sf::Time delta);
 	void render();
 
+	static const int Width = 640;
+	static const int Height = 480;
+	
 private:
 	sf::RenderWindow window_;
 
 	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
-
-	static const int Width = 640;
-	static const int Height = 480;
 };
 
 #endif
