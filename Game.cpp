@@ -59,18 +59,27 @@ void Game::createEntities()
 	entities_.push_back(std::make_shared<Ball>(10.f));
 }
 
+void Game::changeWallsColor(sf::Color color)
+{
+	leftWall_.setFillColor(color);
+	rightWall_.setFillColor(color);
+	topWall_.setFillColor(color);
+	bottomWall_.setFillColor(color);
+	centerWall_.setFillColor(color);
+}
+
 void Game::updateScore()
 {
 	switch (score_)
 	{
 	case 3:
-		leftWall_.setFillColor(sf::Color::Green);
+		changeWallsColor(sf::Color::Green);
 		break;
 	case 2:
-		leftWall_.setFillColor(sf::Color(255, 165, 0));
+		changeWallsColor(sf::Color(255, 165, 0));
 		break;
 	case 1:
-		leftWall_.setFillColor(sf::Color::Red);
+		changeWallsColor(sf::Color::Red);
 		break;
 	default:
 		break;

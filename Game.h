@@ -42,8 +42,9 @@ private:
 	void createEntities();
 	void createWalls();
 	void updateScore();
+	void changeWallsColor(sf::Color color);
 
 	const sf::Time TimePerFrame = sf::seconds(1.f / 60.f);
 };
-
+ 
 #endif
