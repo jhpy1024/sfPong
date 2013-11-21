@@ -1,4 +1,5 @@
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 
 #include <random>
 #include <vector>
@@ -18,6 +19,9 @@ radius_(radius), velocity_(getRandomVelocity())
 	shape_.setRadius(radius_);
 	shape_.setPosition(position_);
 	shape_.setFillColor(sf::Color::Red);
+
+	hitSoundBuffer_.loadFromFile("Sounds/hit_sound.wav");
+	hitSound_.setBuffer(hitSoundBuffer_);
 }
 
 sf::Vector2f Ball::getRandomVelocity()
@@ -42,13 +46,25 @@ void Ball::handleInput()
 void Ball::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 {
 	if (position_.x >= Game::Width - Game::WallSize - radius_ * 2)
+	{
 		velocity_.x = -velocity_.x;
+		hitSound_.play();
+	}
 	if (position_.x <= Game::WallSize)
+	{
 		velocity_.x = -velocity_.x;
+		hitSound_.play();
+	}
 	if (position_.y <= Game::WallSize)
+	{
 		velocity_.y = -velocity_.y;
+		hitSound_.play();
+	}
 	if (position_.y >= Game::Height - Game::WallSize - radius_ * 2)
+	{
 		velocity_.y = -velocity_.y;
+		hitSound_.play();
+	}
 
 	for (auto entity : entities)
 	{
@@ -56,6 +72,8 @@ void Ball::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 		{
 			if (entity->getBounds().intersects(getBounds()))
 			{
+				hitSound_.play();
+
 				while (entity->getBounds().intersects(getBounds()))
 				{
 					if (movingLeft())

@@ -2,6 +2,7 @@
 #define BALL_H
 
 #include <SFML\Graphics.hpp>
+#include <SFML\Audio.hpp>
 
 #include "Entity.h"
 
@@ -21,6 +22,9 @@ public:
 private:
 	sf::CircleShape shape_;
 	sf::Vector2f velocity_;
+
+	sf::SoundBuffer hitSoundBuffer_;
+	sf::Sound hitSound_;
 
 	float radius_;
 

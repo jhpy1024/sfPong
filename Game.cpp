@@ -41,7 +41,7 @@ void Game::createWalls()
 void Game::createEntities()
 {
 	entities_.push_back(std::make_shared<Paddle>(
-		sf::Vector2f(15.f, 200.f),
+		sf::Vector2f(15.f, 150.f),
 		sf::Vector2f(Game::WallSize, Game::Height / 2 - 200 / 2)));
 	entities_.push_back(std::make_shared<Ball>(10.f));
 }
