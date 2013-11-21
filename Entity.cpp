@@ -4,8 +4,8 @@
 
 #include "Entity.h"
 
-Entity::Entity(sf::Vector2f position)
-	: position_(position)
+Entity::Entity(const sf::Vector2f& position)
+: position_(position)
 {
 
 }
@@ -13,9 +13,4 @@ Entity::Entity(sf::Vector2f position)
 sf::Vector2f Entity::getPosition() const
 {
 	return position_;
-}
-
-std::shared_ptr<sf::Shape> Entity::getShape() const
-{
-	return shape_;
 }
