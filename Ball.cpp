@@ -9,7 +9,7 @@
 #include "Entity.h"
 #include "Game.h"
 
-const float Ball::Speed = 200.f;
+const float Ball::Speed = 480.f;
 
 Ball::Ball(float radius)
 : Entity(Entities::Ball, sf::Vector2f(Game::Width / 2 - radius, Game::Height / 2 - radius)),

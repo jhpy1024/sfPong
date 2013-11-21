@@ -7,7 +7,7 @@
 #include "Entity.h"
 #include "Game.h"
 
-const float Paddle::Speed = 200.f;
+const float Paddle::Speed = 300.f;
 
 Paddle::Paddle(const sf::Vector2f& size, const sf::Vector2f& position)
 : Entity(Entities::Paddle, position), size_(size)
