@@ -1,5 +1,8 @@
 #include <SFML\Graphics.hpp>
 
+#include <vector>
+#include <memory>
+
 #include "Paddle.h"
 #include "Entity.h"
 #include "Game.h"
@@ -30,7 +33,7 @@ void Paddle::moveDown(sf::Time delta)
 	position_.y += Paddle::Speed * delta.asSeconds();
 }
 
-void Paddle::checkCollisions()
+void Paddle::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 {
 	if (position_.y < 0)
 		position_.y = 0.f;
@@ -40,8 +43,6 @@ void Paddle::checkCollisions()
 
 void Paddle::update(sf::Time delta)
 {
-	checkCollisions();
-
 	if (upPressed_)
 		moveUp(delta);
 	if (downPressed_)

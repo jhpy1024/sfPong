@@ -3,6 +3,9 @@
 
 #include <SFML\Graphics.hpp>
 
+#include <vector>
+#include <memory>
+
 #include "Entity.h"
 
 class Paddle : public Entity
@@ -17,7 +20,7 @@ public:
 	void moveUp(sf::Time delta);
 	void moveDown(sf::Time delta);
 
-	void checkCollisions();
+	void checkCollisions(std::vector<std::shared_ptr<Entity>>& entities) override;
 
 	float getWidth() const;
 	float getHeight() const;

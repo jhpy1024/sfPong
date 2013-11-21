@@ -2,7 +2,9 @@
 #define ENTITY_H
 
 #include <SFML\Graphics.hpp>
+
 #include <memory>
+#include <vector>
 
 namespace Entities
 {
@@ -23,6 +25,8 @@ public:
 	virtual void handleInput() = 0;
 	virtual void update(sf::Time delta) = 0;
 	virtual void render(sf::RenderWindow& window) = 0;
+
+	virtual void checkCollisions(std::vector<std::shared_ptr<Entity>>& entities) = 0;
 
 	sf::Vector2f getPosition() const;
 

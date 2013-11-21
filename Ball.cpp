@@ -1,6 +1,9 @@
 #include <SFML\Graphics.hpp>
 
 #include <random>
+#include <vector>
+#include <memory>
+#include <ctime>
 
 #include "Ball.h"
 #include "Entity.h"
@@ -22,7 +25,8 @@ sf::Vector2f Ball::getRandomVelocity()
 	sf::Vector2f vel;
 
 	static std::default_random_engine engine;
-	static std::uniform_int_distribution<int> distribution(-1, 1);
+	engine.seed(time(NULL));
+	static std::uniform_real_distribution<float> distribution(-1.f, 1.f);
 
 	vel.x = distribution(engine);
 	vel.y = distribution(engine);
@@ -35,7 +39,7 @@ void Ball::handleInput()
 
 }
 
-void Ball::checkCollisions()
+void Ball::checkCollisions(std::vector<std::shared_ptr<Entity>>& entities)
 {
 	if (position_.x >= Game::Width - radius_ * 2)
 		velocity_.x = -velocity_.x;
@@ -49,8 +53,6 @@ void Ball::checkCollisions()
 
 void Ball::update(sf::Time delta)
 {
-	checkCollisions();
-
 	position_ += velocity_ * Ball::Speed * delta.asSeconds();
 
 	shape_.setPosition(position_);

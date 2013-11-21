@@ -14,7 +14,7 @@ public:
 	void update(sf::Time delta) override;
 	void render(sf::RenderWindow& window) override;
 
-	void checkCollisions();
+	void checkCollisions(std::vector<std::shared_ptr<Entity>>& entities) override;
 
 private:
 	sf::CircleShape shape_;

@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "Game.h"
+#include "Ball.h"
 #include "Paddle.h"
 
 Game::Game()
@@ -11,6 +12,7 @@ Game::Game()
 	entities_.push_back(std::make_shared<Paddle>(
 		sf::Vector2f(15.f, 200.f),
 		sf::Vector2f(10.f, Game::Height / 2 - 200 / 2)));
+	entities_.push_back(std::make_shared<Ball>(10.f));
 }
 
 void Game::handleInput()
@@ -29,7 +31,10 @@ void Game::handleInput()
 void Game::update(sf::Time delta)
 {
 	for (auto entity : entities_)
+	{
+		entity->checkCollisions(entities_);
 		entity->update(delta);
+	}
 }
 
 void Game::render()
