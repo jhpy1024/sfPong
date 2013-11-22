@@ -2,9 +2,6 @@
 
 #include <vector>
 #include <memory>
-#include <iostream>
-#include <random>
-#include <ctime>
 
 #include "AIPaddle.h"
 #include "Paddle.h"
@@ -24,10 +21,6 @@ void AIPaddle::handleInput()
 
 void AIPaddle::update(sf::Time delta)
 {
-	static std::default_random_engine engine;
-	engine.seed(time(NULL));
-	static std::bernoulli_distribution distribution;
-
 	if (ball_.getVelocity().y > 0)
 	{
 		moveDown(delta);
