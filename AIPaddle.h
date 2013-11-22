@@ -24,6 +24,8 @@ public:
 
 private:
 	const Ball& ball_;
+
+	float distanceToBall() const;
 };
 
 #endif

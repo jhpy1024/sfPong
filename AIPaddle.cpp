@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <cmath>
 
 #include "AIPaddle.h"
 #include "Paddle.h"
@@ -21,16 +22,25 @@ void AIPaddle::handleInput()
 
 void AIPaddle::update(sf::Time delta)
 {
-	if (ball_.getVelocity().y > 0)
+	if (distanceToBall() <= (Game::Width * 1.2) / 2)
 	{
-		moveDown(delta);
-	}
-	else if (ball_.getVelocity().y < 0)
-	{
-		moveUp(delta);
+		if (ball_.getVelocity().y > 0)
+		{
+			moveDown(delta);
+		}
+		else if (ball_.getVelocity().y < 0)
+		{
+			moveUp(delta);
+		}
 	}
 
 	shape_.setPosition(position_);
+}
+
+float AIPaddle::distanceToBall() const
+{
+	return sqrt((ball_.getPosition().x - position_.x)*(ball_.getPosition().x - position_.x)
+		+ (ball_.getPosition().y - position_.y)*(ball_.getPosition().y - position_.y));
 }
 
 void AIPaddle::render(sf::RenderWindow& window)
