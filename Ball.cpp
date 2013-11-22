@@ -137,3 +137,8 @@ sf::FloatRect Ball::getBounds() const
 {
 	return shape_.getGlobalBounds();
 }
+
+sf::Vector2f Ball::getVelocity() const
+{
+	return velocity_;
+}

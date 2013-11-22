@@ -18,6 +18,7 @@ public:
 	void checkCollisions(std::vector<std::shared_ptr<Entity>>& entities) override;
 
 	sf::FloatRect getBounds() const override;
+	sf::Vector2f getVelocity() const;
 
 	bool hitWall() const;
 	void setHitWall(bool flag);
