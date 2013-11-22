@@ -1,6 +1,9 @@
 #include <SFML\Graphics.hpp>
 
+#include <memory>
+
 #include "GameScreen.h"
+#include "GameOverScreen.h"
 #include "Ball.h"
 #include "Game.h"
 #include "Paddle.h"
@@ -116,6 +119,8 @@ void GameScreen::updateScore()
 	case 1:
 		changeWallsColor(sf::Color::Red);
 		break;
+	case 0:
+		Game::Screen = std::make_shared<GameOverScreen>();
 	default:
 		break;
 	}
