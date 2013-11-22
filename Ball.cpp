@@ -30,10 +30,16 @@ sf::Vector2f Ball::getRandomVelocity()
 
 	static std::default_random_engine engine;
 	engine.seed(time(NULL));
-	static std::uniform_real_distribution<float> distribution(-1.f, 1.f);
+	static std::bernoulli_distribution distribution;
 
-	vel.x = distribution(engine);
-	vel.y = distribution(engine);
+	if (distribution(engine))
+		vel.x = -1;
+	else vel.x = 1;
+
+	if (distribution(engine))
+		vel.y = -1;
+	else
+		vel.y = 1;
 
 	return vel;
 }
