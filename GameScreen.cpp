@@ -51,8 +51,6 @@ void GameScreen::update(sf::Time delta)
 
 void GameScreen::render(sf::RenderWindow& window)
 {
-	window.clear();
-
 	window.draw(centerWall_);
 	window.draw(leftWall_);
 	window.draw(rightWall_);
@@ -63,8 +61,6 @@ void GameScreen::render(sf::RenderWindow& window)
 
 	for (auto entity : entities_)
 		entity->render(window);
-
-	window.display();
 }
 
 void GameScreen::createWalls()
