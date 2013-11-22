@@ -27,7 +27,7 @@ public:
 	float getWidth() const;
 	float getHeight() const;
 
-private:
+protected:
 	sf::RectangleShape shape_;
 	sf::Vector2f size_;
 
