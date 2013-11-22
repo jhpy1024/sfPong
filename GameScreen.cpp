@@ -7,6 +7,7 @@
 #include "Ball.h"
 #include "Game.h"
 #include "Paddle.h"
+#include "AIPaddle.h"
 
 GameScreen::GameScreen()
 : score_(3)
@@ -95,6 +96,10 @@ void GameScreen::createEntities()
 		sf::Vector2f(15.f, 150.f),
 		sf::Vector2f(Game::WallSize, Game::Height / 2 - 200 / 2)));
 	entities_.push_back(std::make_shared<Ball>(10.f));
+	entities_.push_back(std::make_shared<AIPaddle>(
+		sf::Vector2f(15.f, 150.f),
+		*((Ball*)entities_[1].get()),
+		sf::Vector2f(Game::Width - Game::WallSize - 15.f, Game::Height / 2 - 200 / 2)));
 }
 
 void GameScreen::changeWallsColor(sf::Color color)
