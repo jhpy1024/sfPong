@@ -23,7 +23,7 @@ GameScreen::GameScreen()
 	scoreText_.setPosition(Game::Width / 2, Game::Height / 2);
 }
 
-void GameScreen::handleInput()
+void GameScreen::handleInput(sf::RenderWindow& window)
 {
 	for (auto entity : entities_)
 		entity->handleInput();
