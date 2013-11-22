@@ -8,9 +8,10 @@
 #include "Ball.h"
 #include "Paddle.h"
 #include "GameScreen.h"
+#include "MenuScreen.h"
 
 const float Game::WallSize = 20.f;
-std::shared_ptr<Screen> Game::Screen = std::make_shared<GameScreen>();
+std::shared_ptr<Screen> Game::Screen = std::make_shared<MenuScreen>();
 
 Game::Game()
 : window_(sf::VideoMode(Game::Width, Game::Height), "Pong!")
@@ -37,7 +38,9 @@ void Game::update(sf::Time delta)
 
 void Game::render()
 {
+	window_.clear();
 	Game::Screen->render(window_);
+	window_.display();
 }
 
 void Game::run()
