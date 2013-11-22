@@ -1,3 +1,6 @@
+#ifndef GAMESCREEN_H
+#define GAMESCREEN_H
+
 #include <SFML\Graphics.hpp>
 
 #include <memory>
@@ -34,3 +37,4 @@ private:
 	sf::RectangleShape rightWall_;
 };
 
+#endif
