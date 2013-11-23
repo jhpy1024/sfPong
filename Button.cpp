@@ -32,6 +32,11 @@ void Button::setPosition(sf::Vector2f position)
 	sprite_.setPosition(position);
 }
 
+void Button::setPosition(float x, float y)
+{
+	sprite_.setPosition(x, y);
+}
+
 void Button::render(sf::RenderWindow& window)
 {
 	window.draw(sprite_);

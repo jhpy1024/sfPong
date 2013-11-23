@@ -17,6 +17,7 @@ public:
 	sf::Vector2u getSize() const;
 	sf::Vector2f getPosition() const;
 	void setPosition(sf::Vector2f position);
+	void setPosition(float x, float y);
 
 	void(*callBack)();
 
