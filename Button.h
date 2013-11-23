@@ -8,6 +8,7 @@
 class Button
 {
 public:
+	Button() = default;
 	Button(const std::string& imageFile, sf::Vector2f position = sf::Vector2f(0, 0));
 
 	void render(sf::RenderWindow& window);
