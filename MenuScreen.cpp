@@ -7,31 +7,20 @@
 #include "MenuScreen.h"
 
 MenuScreen::MenuScreen()
+: playBtn_("Images/play.png"), quitBtn_("Images/quit.png")
 {
-	playTexture_.loadFromFile("Images/play.png");
-	quitTexture_.loadFromFile("Images/Quit.png");
+	//quitSprite_.setPosition(playSprite_.getPosition().x,
+	//	playSprite_.getPosition().y + quitTexture_.getSize().y * 1.5);
+	playBtn_.callBack = [](){ Game::Screen = std::make_shared<GameScreen>(); };
+	playBtn_.setPosition(Game::Width / 2 - playBtn_.getSize().x / 2,
+		Game::Height / 2 - playBtn_.getSize().y / 2);
 
-	playSprite_.setTexture(playTexture_);
-	playSprite_.setPosition(Game::Width / 2 - playTexture_.getSize().x / 2,
-		Game::Height / 2 - playTexture_.getSize().y / 2);
-
-	quitSprite_.setTexture(quitTexture_);
-	quitSprite_.setPosition(playSprite_.getPosition().x,
-		playSprite_.getPosition().y + quitTexture_.getSize().y * 1.5);
-
-	mouseBounds_.width = 1.f;
-	mouseBounds_.height = 1.f;
+	btnManager_.addButton("play", std::make_shared<Button>(playBtn_));
 }
 
 void MenuScreen::handleInput(sf::RenderWindow& window)
 {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-		if (mouseBounds_.intersects(playSprite_.getGlobalBounds()))
-			Game::Screen = std::make_shared<GameScreen>();
-		else if (mouseBounds_.intersects(quitSprite_.getGlobalBounds()))
-			window.close();
-	}
+	btnManager_.update(window);
 }
 
 void MenuScreen::update(sf::Time delta)
@@ -41,9 +30,5 @@ void MenuScreen::update(sf::Time delta)
 
 void MenuScreen::render(sf::RenderWindow& window)
 {
-	mouseBounds_.left = sf::Mouse::getPosition(window).x;
-	mouseBounds_.top = sf::Mouse::getPosition(window).y;
-
-	window.draw(playSprite_);
-	window.draw(quitSprite_);
+	btnManager_.render(window);
 }

@@ -1,6 +1,7 @@
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <string>
+#include <iostream>
 
 #include "ButtonManager.h"
 
@@ -17,19 +18,19 @@ void ButtonManager::update(sf::RenderWindow& window)
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		for (auto it = buttons_.begin(); it != buttons_.end(); ++it)
+		for (auto& pair : buttons_)
 		{
-			if (mouseBounds_.intersects(it->second->getBounds()))
-				it->second->callBack();
+			if (pair.second->getBounds().intersects(mouseBounds_))
+				pair.second->callBack();
 		}
 	}
 }
 
 void ButtonManager::render(sf::RenderWindow& window)
 {
-	for (auto it = buttons_.begin(); it != buttons_.end(); ++it)
+	for (auto& pair : buttons_)
 	{
-		it->second->render(window);
+		pair.second->render(window);
 	}
 }
 

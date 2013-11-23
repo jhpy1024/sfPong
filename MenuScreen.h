@@ -4,6 +4,8 @@
 #include <SFML\Graphics.hpp>
 
 #include "Screen.h"
+#include "Button.h"
+#include "ButtonManager.h"
 
 class MenuScreen : public Screen
 {
@@ -15,13 +17,9 @@ public:
 	void render(sf::RenderWindow& window) override;
 
 private:
-	sf::Texture playTexture_;
-	sf::Sprite playSprite_;
-
-	sf::Texture quitTexture_;
-	sf::Sprite quitSprite_;
-
-	sf::FloatRect mouseBounds_;
+	ButtonManager btnManager_;
+	Button playBtn_;
+	Button quitBtn_;
 };
 
 #endif

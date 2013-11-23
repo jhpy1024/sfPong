@@ -1,7 +1,7 @@
 #ifndef BUTTON_MANAGER_H
 #define BUTTON_MANAGER_H
 
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 #include <map>
 #include <string>
