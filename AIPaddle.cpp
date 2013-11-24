@@ -24,11 +24,11 @@ void AIPaddle::update(sf::Time delta)
 {
 	if (distanceToBall() <= (Game::Width * 1.2) / 2)
 	{
-		if (ball_.getVelocity().y > 0)
+		if (ball_.getPosition().y > position_.y)
 		{
 			moveDown(delta);
 		}
-		else if (ball_.getVelocity().y < 0)
+		else if (ball_.getPosition().y < position_.y)
 		{
 			moveUp(delta);
 		}
